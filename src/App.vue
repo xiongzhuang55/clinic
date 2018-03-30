@@ -40,19 +40,19 @@ export default {
         },
         {
           "title":'经典案例',
-          "href": "1708"
+          "href": "1900"
         },
         {
           "title":'行业新闻',
-          "href": "2207"
+          "href": "2400"
         },
         {
           "title":'关于我们',
-          "href": "2905"
+          "href": "3100"
         },
         {
           "title":'联系我们',
-          "href": "3200"
+          "href": "3400"
         }
       ]
     };
@@ -62,7 +62,7 @@ export default {
   },
   mounted () {
     this.scroll();
-    window.addEventListener('scroll', this.handleScroll)
+    window.addEventListener('scroll', this.handleScroll);
   },
   methods: {
     scroll () {
@@ -88,12 +88,6 @@ export default {
   @import "./common/css/index.styl"
 
 #app
-  .el-row
-    margin-left 0 !important
-    margin-right 0px !important
-    .el-coll
-      padding-left 0px !important
-      padding-right 0px !important
   .logo
     display flex
     widthMargin(1200px)

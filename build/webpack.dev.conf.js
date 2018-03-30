@@ -10,15 +10,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 // 通过express导入路由
-const express = require('express')
-const app = express()
-var appData = require('../data.json')
+//const express = require('express')
+//const app = express()
+//var appData = require('../data.json')
 // json卖家数据
-var about = appData.about
+//var about = appData.about
 // 编写路由
-var apiRoutes = express.Router()
+//var apiRoutes = express.Router()
 // 所有通过接口相关的api都会通过api这个路由导向到具体的路由
-app.use('/api', apiRoutes)
+//app.use('/api', apiRoutes)
 
 
 const HOST = process.env.HOST
@@ -33,17 +33,17 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 
   // these devServer options should be customized in /config/index.js
   devServer: {
-    before (app) {
-      app.get('/api/about', function (req, res) {
-        // 服务端收到请求后返回给客户端一个json数据
-        res.json({
-          // 当我们数据正常时，我们通过传递errno字符为0表示数据正常
-          errno: 0,
-          // 返回json中的卖家数据
-          data: about
-        })
-      })
-    },
+    // before (app) {
+    //   app.get('/api/about', function (req, res) {
+    //     // 服务端收到请求后返回给客户端一个json数据
+    //     res.json({
+    //       // 当我们数据正常时，我们通过传递errno字符为0表示数据正常
+    //       errno: 0,
+    //       // 返回json中的卖家数据
+    //       data: about
+    //     })
+    //   })
+    // },
     clientLogLevel: 'warning',
     historyApiFallback: {
       rewrites: [
@@ -77,7 +77,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
-      inject: true
+      inject: true,
+      favicon: './favicon.ico'
     }),
     // copy custom static assets
     new CopyWebpackPlugin([

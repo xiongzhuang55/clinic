@@ -8,6 +8,10 @@ import vueResource from 'vue-resource'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import './common/css/index.styl'
+import newsData from './common/js/newsData'
+
+Vue.prototype.$newsData=newsData
+
 Vue.use(ElementUI)
 Vue.use(vueResource)
 Vue.use(Mock)

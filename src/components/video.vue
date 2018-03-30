@@ -2,7 +2,26 @@
     <div class="video">
       <h1>{{content[ID].title}}</h1>
       <video :src="content[ID].src" width="970" height="500" autoplay controls="controls"></video>
-      <pre>{{content[ID].text}}</pre>
+      <div v-if="ID == 2" style="width:1000px;">
+        <h2>{{content[ID].text.title}}</h2>
+        <p>{{content[ID].text.info}}</p>
+        <table cellpadding="0" cellspacing="0">
+          <caption>{{content[ID].text.tableData.title}}</caption>
+          <thead>
+            <tr>
+              <td v-for="(item, index) in content[ID].text.tableData.text.thead" :key="index">{{item}}</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item, index) in content[ID].text.tableData.text.tbody" :key="index">
+              <td>{{item.td1}}</td>
+              <td>{{item.td2}}
+              <td>{{item.td3}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <pre v-else>{{content[ID].text}}</pre>
     </div>
 </template>
 
@@ -38,7 +57,83 @@
           },
           {
             "title": "全科智能辅助系统",
-            "text": "",
+            "text": {
+              "title": "产品：全科临床智能辅助系统",
+              "info": "系统以多专科并行推导方式辅助医生临床诊疗，防范误诊、漏诊；通过内含诊疗常规的全医学知识库，起到临床实训作用，提高医生技能。",
+              "tableData": {
+                "title": "决策引擎 叠加功能",
+                "text": {
+                  "thead": ["", "决策引擎 叠加功能", "医生"],
+                  "tbody": [
+                    {
+                      "td1": "性质",
+                      "td2": "智能辅助+医生",
+                      "td3": "医生个人"
+                    },
+                    {
+                      "td1": "限制性",
+                      "td2": "全医学本体+医生认知 (8000病、1200候证)",
+                      "td3": "个人经验学识"
+                    },
+                    {
+                      "td1": "思维特点",
+                      "td2": "多专科并行搜索 (防漏诊误诊)",
+                      "td3": "大脑搜索"
+                    },
+                    {
+                      "td1": "思考逻辑",
+                      "td2": "医学逻辑仿真+医生思维",
+                      "td3": "个人逻辑思维"
+                    },
+                    {
+                      "td1": "个性针对",
+                      "td2": "有",
+                      "td3": "有"
+                    },
+                    {
+                      "td1": "诊疗过程",
+                      "td2": "并行连续、辅助决策",
+                      "td3": "个人判断"
+                    },
+                    {
+                      "td1": "流程",
+                      "td2": "严格的国家规定流程",
+                      "td3": "条件性随意流程"
+                    },
+                    {
+                      "td1": "资源来源",
+                      "td2": "标准、教材、指南、经典",
+                      "td3": "教材、经验"
+                    },
+                    {
+                      "td1": "诊疗特征",
+                      "td2": "循证协助+个性特征",
+                      "td3": "个性特征"
+                    },
+                    {
+                      "td1": "对症概率",
+                      "td2": "条件明确、对症概率大",
+                      "td3": "条件隐晦、选择性波动"
+                    },
+                    {
+                      "td1": "增加工作",
+                      "td2": "增加计算机操作，需要学习",
+                      "td3": "不增加"
+                    },
+                    {
+                      "td1": "易操作性",
+                      "td2": "操作易习惯，习惯后更方便",
+                      "td3": "不增加"
+                    },
+                    {
+                      "td1": "文档",
+                      "td2": "自动形成记录文档（病历）",
+                      "td3": "手写记录"
+                    }
+                  ]
+                }
+              }
+            },
             "src":require('../assets/movie/movie_2.mp4')
           },
           {
@@ -85,7 +180,26 @@
     width 970px
     padding 20px 0 20px 0px
     text-align center
+  h2
+    margin-top 20px
   pre
     padding 30px
   line-height 30px
+  table
+    width 100%
+    margin-top 20px
+    border-left 1px solid #ccc
+    border-top 1px solid #ccc
+    caption
+      font-weight bold
+    thead
+      font-weight bold
+    tr
+      td:first-child
+        font-weight bold
+      td
+        text-align center
+        border-right 1px solid #ccc
+        border-bottom 1px solid #ccc
+
 </style>

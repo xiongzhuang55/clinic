@@ -14,7 +14,7 @@
           </div>
         </el-col>
       </el-row>
-      <el-row :gutter="20" v-for="(item, index) in publicData.publicData" :key="index">
+      <el-row :gutter="20" v-for="(item, index) in publicData" :key="index">
         <el-col :span="6">
           <img src="../../assets/images/wawa.png" alt="">
         </el-col>
@@ -45,9 +45,7 @@
 
     },
     created () {
-      this.$http.get('/api/about').then((res) => {
-        this.publicData = res.body.data
-      })
+      this.publicData = this.$newsData.data().publicData
     }
   }
 </script>
