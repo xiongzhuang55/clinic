@@ -3,58 +3,83 @@
     <div class="logo">
       <img src="./assets/images/logo.png">
     </div>
-    <div class="nav">
+    <div class="nav" :class="{'nav-fixed': fixed}">
       <ul>
         <li v-for="(item, index) in navItems" :key="index">
-          <a href="#">{{item}}</a>
+          <a @click="scroll">
+            <router-link :to="{path:'/',query:{id:item.href}}">
+              {{item.title}}
+            </router-link>
+          </a>
         </li>
       </ul>
     </div>
-    <div class="banner">
-      <div id="ad1" class="carousel slide" data-ride="carousel" data-interval="2000">
-        <div class="carousel-inner">
-          <div v-for="(item, index) in bannerItems" class="item" :class="item.type" :key="index">
-            <img :src="item.url" alt="">
-          </div>
-        </div>
-        <!--左右切换的按钮-->
-        <a class="carousel-control left" href="#ad1" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-        </a>
-        <a class="carousel-control right" href="#ad1" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
-        <ul class="carousel-indicators">
-          <li data-target="#ad1" class="" data-slide-to="0"></li>
-          <li data-target="#ad1" class="" data-slide-to="1"></li>
-          <li data-target="#ad1" class="" data-slide-to="2"></li>
-        </ul>
-      </div>
-    </div>
     <router-view/>
+    <v-footer></v-footer>
   </div>
 </template>
 <script>
+  import footer from './components/footer.vue'
 export default {
   name: 'App',
   data () {
     return {
-      navItems: ['首页', '产品介绍', '技术支持', '经典案例', '行业新闻', '关于我们', '联系我们'],
-      bannerItems:[
+      "fixed": false,
+      navItems: [
         {
-          'url': require('./assets/images/banner_1.png'),
-          'type': 'active'
+          "title":'首页',
+          "href": "0"
         },
         {
-          'url': require('./assets/images/banner_2.png'),
-          'type': ''
+          "title":'产品介绍',
+          "href": "500"
         },
         {
-          'url': require('./assets/images/banner_3.png'),
-          'type': ''
+          "title":'技术支持',
+          "href": "1100"
+        },
+        {
+          "title":'经典案例',
+          "href": "1708"
+        },
+        {
+          "title":'行业新闻',
+          "href": "2207"
+        },
+        {
+          "title":'关于我们',
+          "href": "2905"
+        },
+        {
+          "title":'联系我们',
+          "href": "3200"
         }
       ]
     };
+  },
+  components: {
+    'v-footer': footer
+  },
+  mounted () {
+    this.scroll();
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  methods: {
+    scroll () {
+      let id = this.$route.query.id;
+      $('html, body').animate({
+        scrollTop: id
+      },300)
+      if (id > 500) {
+        this.fixed = true
+      }
+    },
+    handleScroll () {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+      if (scrollTop < 450){
+        this.fixed = false
+      }else this.fixed = true
+    }
   }
 }
 </script>
@@ -63,16 +88,27 @@ export default {
   @import "./common/css/index.styl"
 
 #app
-  width 1200px
-  margin 0px auto
-  color #2c3e50
+  .el-row
+    margin-left 0 !important
+    margin-right 0px !important
+    .el-coll
+      padding-left 0px !important
+      padding-right 0px !important
   .logo
     display flex
+    widthMargin(1200px)
     height 100px
     align-items center
     text-align center
     justify-content center
   .nav
+    widthMargin(1200px)
+    &.nav-fixed
+      position fixed
+      top 0
+      width 100%
+      background-color #fff
+      z-index 999
     ul
       width 90%
       margin 0px auto
@@ -89,4 +125,16 @@ export default {
           display inline-block
           width 100%
           height 100%
+          &:hover
+            color #00ace9
+  .el-carousel
+    widthMargin(1200px)
+  .about-div
+    widthMargin(1200px)
+    .el-row
+      margin 20px 0
+      h2
+        margin 10px 0
+      span
+        line-height 30px
 </style>
