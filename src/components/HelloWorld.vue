@@ -412,12 +412,6 @@ export default {
   created () {
     this.classMap = ['address', 'phone', 'email', 'website'];
     this.classAbout = ['about_1', 'about_2', 'about_3', 'about_4'];
-//    this.$http.get('/api/seller').then((response) => {
-//      response = response.body;
-//      if (response.errno === ERR_OK) {
-//        this.seller = response.data;
-//      }
-//    });
   },
   mounted () {
     var logo = this.logo;
@@ -477,7 +471,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "../common/css/mixi.styl";
-  @import "../common/css/animate.min.css";
   .backBg($url)
     background-image url($url)
     background-position center

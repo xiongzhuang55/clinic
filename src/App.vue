@@ -67,9 +67,12 @@ export default {
   methods: {
     scroll () {
       let id = this.$route.query.id;
+      if (id == 0 ) {
+        this.$router.push('/')
+      }
       $('html, body').animate({
         scrollTop: id
-      },300)
+      },300);
       if (id > 500) {
         this.fixed = true
       }
