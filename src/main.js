@@ -3,7 +3,6 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import Mock from 'mockjs'
 import vueResource from 'vue-resource'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -14,7 +13,6 @@ Vue.prototype.$newsData=newsData
 
 Vue.use(ElementUI)
 Vue.use(vueResource)
-Vue.use(Mock)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
